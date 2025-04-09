@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>bg color generator</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+   body{
+    background-image: linear-gradient(to right, black, rgb(0, 0, 0));
+   }
+      section {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        width: 100vw;
+        position: relative;
+        /* background-image: linear-gradient(to right, red, rgb(0, 0, 255)); */
+      }
+      h2 {
+        position: absolute;
+        top: 58vh;
+        color: white;
+      }
+      .copyCode {
+        
+        position: absolute;
+        border-radius: 0.5rem;
+        padding: 8px;
+        top: 66vh;
+        height: 8vh;
+        width: 25vw;
+        border-left: 4px solid white;
+        font-size: large;
+        font-weight: 500;
+        font-family: "Courier New", Courier, monospace;
+        background-color: rgb(199, 191, 191, 0.2);
+        color: white;
+        &:hover{
+          cursor: pointer;
+        }
+      }
+      #main {
+        gap: 2vw;
+        display: flex;
+
+        /* flex-direction: column; */
+        justify-content: center;
+        align-items: center;
+        height: 20vh;
+        width: 33vw;
+      }
+      button {
+        color: white;
+        width: 10vw;
+        height: 6vh;
+        border-radius: 2rem;
+        font-size: larger;
+        font-weight: 700;
+        box-shadow: 1px 1px 8px black;
+      }
+      #mybutton {
+        background-color: rgb(6, 6, 40);
+       
+        border: none;
+      }
+      #mybutton2 {
+        background-color: rgb(255, 153, 0);
+        border: none;
+      }
+    </style>
+  </head>
+  <body>
+    <section>
+      <div id="main">
+        <button id="mybutton">#000</button>
+        <button  id="mybutton2">#000</button>
+       
+      </div>
+      <h2>copy your code here</h2>
+      <div class="copyCode">
+        background image : linear-gradient(to right, #000,
+        #000);
+      </div>
+    </section>
+    <script>
+      let btn1 = document.getElementById("mybutton");
+      let btn2 = document.querySelector("#mybutton2");
+      let copyDiv = document.querySelector(".copyCode");
+let rgb1 = "#000";
+let rgb2 = "#fff";
+
+
+const hexValues = () =>{
+    let hexValue = "0123456789abcdef";
+        let colors ="#";
+        for (let i = 0; i < 6; i++) {
+          // console.log(math.floor(hex[math.random()*16]));
+          colors = colors +hexValue[Math.floor(Math.random() * 16)];
+        }
+     return colors;
+
+};
+      const handleButton1 = () => {
+    
+     rgb1= hexValues();
+    console.log(rgb1);
+    btn1.style.backgroundColor= rgb1;
+    document.body.style.backgroundImage = `linear-gradient(to right, ${rgb1}, ${rgb2})`;
+    copyDiv.innerHTML =`background image : linear-gradient(to right, ${rgb1}, ${rgb2});`;
+    btn1.innerText = `${rgb1}`
+
+    
+        
+      };
+
+      const handleButton2 = () => {
+      
+         rgb2= hexValues();
+    console.log(rgb2);
+    document.body.style.backgroundImage = `linear-gradient(to right, ${rgb1}, ${rgb2}`;
+    copyDiv.innerHTML =`background image : linear-gradient(to right, ${rgb1}, ${rgb2});`;
+    btn2.innerText = `${rgb2}`
+    btn2.style.backgroundColor = rgb2;
+      };
+
+
+const clip =() => {
+  navigator.clipboard.writeText(`background image : linear-gradient(to right, ${rgb1}, ${rgb2});`);
+  alert("successfully copied!");
+
+};
+
+
+      btn1.addEventListener("click", handleButton1);
+      copyDiv.addEventListener("click", clip);
+      
+      // navigator.clipboard.writeText(copyDiv.innerText)
+      btn2.addEventListener("click", handleButton2);
+    </script>
+  </body>
+</html>
